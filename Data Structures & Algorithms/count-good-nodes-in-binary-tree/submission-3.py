@@ -1,0 +1,25 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def goodNodes(self, root: TreeNode) -> int:
+        self.count = 0
+
+        self.recursion(float('-inf'), root)
+
+        return self.count
+
+    def recursion(self, maxOnPath: int, root: TreeNode):
+        if not root:
+            return
+
+        if root.val >= maxOnPath:
+            maxOnPath = root.val
+            self.count += 1
+
+        self.recursion(maxOnPath, root.left)
+        self.recursion(maxOnPath, root.right)
